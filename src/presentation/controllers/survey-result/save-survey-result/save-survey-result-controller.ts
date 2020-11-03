@@ -2,7 +2,7 @@ import { Controller, HttpRequest, HttpResponse, LoadSurveyById, SaveSurveyResult
 import { forbidden, serverError, ok } from '@/presentation/helpers/http/http-helper'
 import { InvalidParamsError } from '@/presentation/errors'
 
-export class SurveySaveResultController implements Controller {
+export class SaveSurveyResultController implements Controller {
   constructor (
     private readonly loadSurveyById: LoadSurveyById,
     private readonly surveySaveResult: SaveSurveyResult
