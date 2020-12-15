@@ -1,12 +1,12 @@
-import { AddAccount, AddAccountParams, AccountModel, Authentication, AuthenticationParams } from '../controllers/login/signup/signup-controller-protocols'
+import { AddAccount, AccountModel, Authentication, AuthenticationParams } from '../controllers/login/signup/signup-controller-protocols'
 import { LoadAccountByToken } from '../middlewares/auth-middleware-protocols'
 import { mockAccountModel } from '@/domain/test'
 import { AuthenticationModel } from '@/domain/models/authentication'
 
 export const mockAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
-    async add (account: AddAccountParams): Promise<AccountModel> {
-      return Promise.resolve(mockAccountModel())
+    async add (account: AddAccount.Params): Promise<AddAccount.result> {
+      return Promise.resolve(true)
     }
   }
   return new AddAccountStub()
