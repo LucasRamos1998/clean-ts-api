@@ -1,5 +1,5 @@
 import { SurveyModel } from '../models/survey'
-import { AddSurveyParams } from '../useCases/survey/add-survey'
+import { AddSurvey } from '../useCases/survey/add-survey'
 
 export const mockSurveyModel = (): SurveyModel => {
   return {
@@ -38,7 +38,7 @@ export const mockSurveyModels = (): SurveyModel[] => {
   ]
 }
 
-export const mockAddSurveyParams = (): AddSurveyParams => ({
+export const mockAddSurveyParams = (): AddSurvey.Params => ({
   question: 'any_question',
   answers: [{
     image: 'any_image',
