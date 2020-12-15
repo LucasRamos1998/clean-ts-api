@@ -1,13 +1,12 @@
 import { AddAccountRepository } from '../protocols/db/account/add-account-repository'
-import { AccountModel, LoadAccountByEmailRepository } from '../user-cases/account/add-account/db-add-account-protocols'
+import { LoadAccountByEmailRepository } from '../user-cases/account/add-account/db-add-account-protocols'
 import { LoadAccountByTokenRepository } from '../protocols/db/account/load-account-by-token-repository'
 import { UpdateAccessTokenRepository } from '../protocols/db/account/update-access-token-repository'
-import { mockAccountModel } from '@/domain/test'
 
 export const mockAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
     async add (accountData: AddAccountRepository.Params): Promise<AddAccountRepository.result> {
-      return Promise.resolve(mockAccountModel())
+      return Promise.resolve(true)
     }
   }
   return new AddAccountRepositoryStub()
@@ -15,8 +14,12 @@ export const mockAddAccountRepository = (): AddAccountRepository => {
 
 export const mockLoadAccountByEmailRepository = (): LoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
-    async loadByEmail (email: string): Promise<AccountModel> {
-      return Promise.resolve(mockAccountModel())
+    async loadByEmail (email: string): Promise<LoadAccountByEmailRepository.Result> {
+      return Promise.resolve({
+        id: 'any_id',
+        name: 'any_name',
+        password: 'any_password'
+      })
     }
   }
   return new LoadAccountByEmailRepositoryStub()
@@ -24,8 +27,8 @@ export const mockLoadAccountByEmailRepository = (): LoadAccountByEmailRepository
 
 export const mockLoadAccountByTokenRepository = (): LoadAccountByTokenRepository => {
   class LoadAccountByTokenRepositoryStub implements LoadAccountByTokenRepository {
-    async loadByToken (token: string, role?: string): Promise<AccountModel> {
-      return Promise.resolve(mockAccountModel())
+    async loadByToken (token: string, role?: string): Promise<LoadAccountByTokenRepository.Result> {
+      return Promise.resolve({ id: 'any_id' })
     }
   }
   return new LoadAccountByTokenRepositoryStub()

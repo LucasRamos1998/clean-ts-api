@@ -1,6 +1,5 @@
-import { AddAccount, AccountModel, Authentication } from '../controllers/login/signup/signup-controller-protocols'
+import { AddAccount, Authentication } from '../controllers/login/signup/signup-controller-protocols'
 import { LoadAccountByToken } from '../middlewares/auth-middleware-protocols'
-import { mockAccountModel } from '@/domain/test'
 
 export const mockAddAccount = (): AddAccount => {
   class AddAccountStub implements AddAccount {
@@ -23,8 +22,8 @@ export const mockAuthentication = (): Authentication => {
 
 export const mockLoadAccountByToken = (): LoadAccountByToken => {
   class LoadAccountByTokenStub implements LoadAccountByToken {
-    async load (accessToken: string, role?: string): Promise<AccountModel> {
-      return Promise.resolve(mockAccountModel())
+    async load (accessToken: string, role?: string): Promise<LoadAccountByToken.result> {
+      return Promise.resolve({ id: 'any_id' })
     }
   }
   return new LoadAccountByTokenStub()
